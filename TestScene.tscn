@@ -1,0 +1,141 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Sprites/Sky.png" type="Texture" id=1]
+[ext_resource path="res://Objects/Ball.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Objects/Ball.gd" type="Script" id=3]
+[ext_resource path="res://Code/ObjectPlacer.gd" type="Script" id=4]
+[ext_resource path="res://Objects/Peg.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Sprites/pegBig.png" type="Texture" id=6]
+[ext_resource path="res://Code/SelectButton.gd" type="Script" id=7]
+[ext_resource path="res://Sprites/Bumper.png" type="Texture" id=8]
+
+[node name="Node2D" type="Node2D" index="0"]
+
+[node name="Sprite" type="Sprite" parent="." index="0"]
+
+texture = ExtResource( 1 )
+centered = false
+_sections_unfolded = [ "Offset" ]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Ball" parent="." index="1" instance=ExtResource( 2 )]
+
+position = Vector2( 244.578, 154.328 )
+script = ExtResource( 3 )
+
+[node name="ObjectPlacer" type="Area2D" parent="." index="2" groups=[
+"Picker",
+]]
+
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+script = ExtResource( 4 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="Sprite" type="Sprite" parent="ObjectPlacer" index="0"]
+
+modulate = Color( 0, 1, 0.015625, 0.618784 )
+_sections_unfolded = [ "Transform", "Visibility" ]
+
+[node name="Peg" parent="." index="3" instance=ExtResource( 5 )]
+
+position = Vector2( 259.92, 348.365 )
+
+[node name="Control" type="Control" parent="." index="4"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 783.0
+margin_right = 40.0
+margin_bottom = 40.0
+rect_pivot_offset = Vector2( 0, 0 )
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+_sections_unfolded = [ "Material", "Visibility" ]
+
+[node name="Panel" type="Panel" parent="Control" index="0"]
+
+editor/display_folded = true
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 261.0
+margin_bottom = 603.0
+rect_pivot_offset = Vector2( 0, 0 )
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+_sections_unfolded = [ "Anchor", "Margin", "Material", "Visibility" ]
+
+[node name="PegButton" type="Button" parent="Control/Panel" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 34.0
+margin_top = 25.0
+margin_right = 70.0
+margin_bottom = 55.0
+rect_pivot_offset = Vector2( 0, 0 )
+focus_mode = 2
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+group = null
+icon = ExtResource( 6 )
+flat = false
+align = 1
+script = ExtResource( 7 )
+_sections_unfolded = [ "Hint", "Rect" ]
+obj = "Peg"
+
+[node name="BumperButton" type="Button" parent="Control/Panel" index="1"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 34.0
+margin_top = 81.0
+margin_right = 70.0
+margin_bottom = 111.0
+rect_pivot_offset = Vector2( 0, 0 )
+focus_mode = 2
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+group = null
+icon = ExtResource( 8 )
+flat = false
+align = 1
+script = ExtResource( 7 )
+_sections_unfolded = [ "Hint", "Rect" ]
+obj = "Bumper"
+
+[connection signal="pressed" from="Control/Panel/PegButton" to="Control/Panel/PegButton" method="_on_ItemButton_pressed"]
+
+[connection signal="pressed" from="Control/Panel/BumperButton" to="Control/Panel/BumperButton" method="_on_ItemButton_pressed"]
+
+
