@@ -1,4 +1,4 @@
-extends Node2D
+extends Area2D
 
 # class member variables go here, for example:
 # var a = 2
@@ -12,12 +12,14 @@ func _ready():
 	pass
 
 func _input(event):
-	if event.is_action_pressed("mouse_left") and event.is_pressed():
-		if canPlace():
+	if event.is_pressed():
+		if event.is_action_pressed("mouse_left") and canPlace():
 			var o =object.instance()
 			get_parent().add_child(o)
 			o.position = position
-		pass
+		elif event.is_action_pressed("mouse_right"):
+			object = null
+			sprite.texture = null
 	pass
 
 func _process(delta):
@@ -33,11 +35,14 @@ func _process(delta):
 	pass
 
 func canPlace():
-	return position.x < 600 and object != null
-	
+	return position.x < 600 and object != null and get_overlapping_bodies().size() == 0
 
-func selectObject(obj):
-	print("test")
-	get_node("Sprite").texture =load( "res://Sprites/"+obj+".png")
+
+func selectObject(obj,size):
+	sprite.texture =load( "res://Sprites/"+obj+".png")
 	object = load( "res://Objects/"+obj+".tscn")
+	get_node("CollisionShape2D").shape.radius = size
 	pass
+
+func isHoldingSomething():
+	return object != null
