@@ -36,7 +36,7 @@ func _process(delta):
 	pass
 
 func canPlace():
-	return position.x < 600 and object != null and get_overlapping_bodies().size() == 0
+	return position.x < 780 and position.x > 100 and object != null and get_overlapping_bodies().size() == 0
 
 
 func selectObject(obj,size):

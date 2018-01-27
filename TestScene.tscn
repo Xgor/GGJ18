@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Sprites/Sky.png" type="Texture" id=1]
 [ext_resource path="res://Objects/Cannon.tscn" type="PackedScene" id=2]
@@ -8,13 +8,14 @@
 [ext_resource path="res://Sprites/Bumper.png" type="Texture" id=6]
 [ext_resource path="res://Code/PlayButton.gd" type="Script" id=7]
 [ext_resource path="res://Sprites/Play.png" type="Texture" id=8]
+[ext_resource path="res://Sprites/Wood.png" type="Texture" id=9]
 
-[sub_resource type="CircleShape2D" id=2]
+[sub_resource type="CircleShape2D" id=1]
 
 custom_solver_bias = 0.0
 radius = 10.0
 
-[node name="Node2D" type="Node2D"]
+[node name="Node2D" type="Node2D" index="0"]
 
 [node name="Sprite" type="Sprite" parent="." index="0"]
 
@@ -53,7 +54,7 @@ _sections_unfolded = [ "Transform", "Visibility" ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ObjectPlacer" index="1"]
 
-shape = SubResource( 2 )
+shape = SubResource( 1 )
 _sections_unfolded = [ "Transform", "Visibility" ]
 
 [node name="Control" type="Control" parent="." index="3"]
@@ -184,6 +185,36 @@ size_flags_horizontal = 1
 size_flags_vertical = 1
 texture = ExtResource( 8 )
 stretch_mode = 0
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." index="4"]
+
+position = Vector2( 315.163, 217.02 )
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 1.0
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite2" type="Sprite" parent="." index="5"]
+
+position = Vector2( 12.3033, 166.094 )
+texture = ExtResource( 9 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 32, 1000 )
+_sections_unfolded = [ "Animation", "Offset", "Region", "Transform", "Visibility", "Z Index" ]
+
+[node name="Sprite3" type="Sprite" parent="." index="6"]
+
+position = Vector2( 768.955, 172.246 )
+texture = ExtResource( 9 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 32, 1000 )
+_sections_unfolded = [ "Animation", "Offset", "Region", "Transform", "Visibility", "Z Index" ]
 
 [connection signal="pressed" from="Control/Panel/PegButton" to="Control/Panel/PegButton" method="_on_ItemButton_pressed"]
 
