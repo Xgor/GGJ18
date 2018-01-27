@@ -5,6 +5,7 @@ extends Area2D
 # var b = "textvar"
 var object
 var sprite
+var active =true
 func _ready():
 	# Called every time the node is added to the scene.
 	# Initialization here
@@ -46,3 +47,14 @@ func selectObject(obj,size):
 
 func isHoldingSomething():
 	return object != null
+	
+func activate():
+	active =true
+	show()
+	pass
+	
+func deactivate():
+	active = false
+	hide()
+	#get_tree().call_group("Picker", "selectObject",obj,size)
+	pass

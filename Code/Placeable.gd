@@ -3,7 +3,7 @@ extends Area2D
 # class member variables go here, for example:
 # var a = 2
 # var b = "textvar"
-var active =true
+
 var placer
 
 func _ready():
@@ -23,21 +23,11 @@ func _process(delta):
 
 func _on_Placeable_input_event( viewport, event, shape_idx ):
 	
-	if active:
-		if event.is_pressed():
-			
-			if event.is_action_pressed("mouse_right"):
-				#print("ello")
-				get_parent().queue_free()
-#				queue_free()
+	if event.is_pressed():
+		
+		if event.is_action_pressed("mouse_right"):
+			#print("ello")
+			get_parent().queue_free()
+#			queue_free()
 	pass 
 
-func activate():
-	active =true
-	show()
-	pass
-	
-func deactivate():
-	active = false
-	hide()
-	pass

@@ -35,8 +35,11 @@ func activated():
 	
 func run():
 	tex.texture = spr_stop
+	get_tree().call_group("Cannon", "activate")
 	pass
 
 func stop():
 	tex.texture = spr_play
+	get_tree().call_group("Balls", "queue_free")
+	get_tree().call_group("Cannon", "deactivate")
 	pass
