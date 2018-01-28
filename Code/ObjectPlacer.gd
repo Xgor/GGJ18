@@ -5,22 +5,27 @@ extends Area2D
 # var b = "textvar"
 var object
 var sprite
-var active =true
+var active =false
+var pegs = 5
 func _ready():
 	# Called every time the node is added to the scene.
 	# Initialization here
 	sprite = get_node("Sprite")
+	selectObject("peg",12)
 	pass
 
 func _input(event):
-	if event.is_pressed():
+	if event.is_pressed() and active:
 		if event.is_action_pressed("mouse_left") and canPlace():
 			var o =object.instance()
 			get_parent().add_child(o)
 			o.position = position
-		elif event.is_action_pressed("mouse_right"):
-			object = null
-			sprite.texture = null
+			get_tree().call_group("GameManager", "activated")
+			get_tree().call_group("Tutorial", "hide")
+			
+	#	elif event.is_action_pressed("mouse_right"):
+	#		object = null
+	#		sprite.texture = null
 	pass
 
 func _process(delta):
@@ -28,19 +33,22 @@ func _process(delta):
 	# Update game logic here.
 	
 	position =get_viewport().get_mouse_position()
-	
-	if canPlace():
-		sprite.modulate = Color(0,1,0,0.5)
-	else:
-		sprite.modulate = Color(1,0,0,0.5)
+	if active:
+		if canPlace():
+			sprite.show()
+		##	sprite.modulate = Color(0,1,0,0.5)
+		else:
+			sprite.hide()
+	#	sprite.modulate = Color(1,0,0,0.5)
 	pass
 
 func canPlace():
-	return position.x < 780 and position.x > 100 and object != null and get_overlapping_bodies().size() == 0
+	#position.x < 780 and position.x > 100 and
+	return position.x > 150 and object != null and get_overlapping_bodies().size() == 0
 
 
 func selectObject(obj,size):
-	sprite.texture =load( "res://Sprites/"+obj+".png")
+	#sprite.texture =load( "res://Sprites/"+obj+".png")
 	object = load( "res://Objects/"+obj+".tscn")
 	get_node("CollisionShape2D").shape.radius = size
 	pass
@@ -50,11 +58,13 @@ func isHoldingSomething():
 	
 func activate():
 	active =true
-	show()
+	sprite.show()
 	pass
 	
 func deactivate():
 	active = false
-	hide()
+	sprite.hide()
 	#get_tree().call_group("Picker", "selectObject",obj,size)
 	pass
+	
+

@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Code/Ball.gd" type="Script" id=1]
-[ext_resource path="res://Sprites/Bumper.png" type="Texture" id=2]
+[ext_resource path="res://Sprites/WhiteBall.png" type="Texture" id=2]
 
 [sub_resource type="CircleShape2D" id=1]
 
@@ -35,47 +35,31 @@ _sections_unfolded = [ "Material", "Pause", "Pickable", "Transform", "Visibility
 
 [node name="Sprite" type="Sprite" parent="." index="0"]
 
+modulate = Color( 0.273438, 0.273438, 0.273438, 1 )
 z_index = -2
 texture = ExtResource( 2 )
-_sections_unfolded = [ "Transform", "Z Index" ]
+_sections_unfolded = [ "Material", "Transform", "Visibility", "Z Index" ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
 
 shape = SubResource( 1 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="Label" type="Label" parent="." index="2"]
+[node name="Timer" type="Timer" parent="." index="2"]
 
-visible = false
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = -32.0
-margin_top = -38.0
-margin_right = -1.0
-margin_bottom = 2.0
-rect_scale = Vector2( 2, 2 )
-rect_pivot_offset = Vector2( 0, 0 )
-mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 4
-text = "4"
-align = 1
-valign = 1
-autowrap = true
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-_sections_unfolded = [ "Anchor", "Grow Direction", "Margin", "Rect" ]
-
-[node name="Timer" type="Timer" parent="." index="3"]
-
-process_mode = 1
-wait_time = 0.2
+process_mode = 0
+wait_time = 0.05
 one_shot = false
 autostart = true
+
+[node name="Tween" type="Tween" parent="." index="3"]
+
+repeat = false
+playback_process_mode = 1
+playback_speed = 1.0
+playback/active = false
+playback/repeat = false
+playback/speed = 1.0
 
 [connection signal="body_entered" from="." to="." method="_on_Ball_body_entered"]
 

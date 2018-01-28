@@ -18,6 +18,9 @@ func _ready():
 #	# Called every frame. Delta is time since last frame.
 #	# Update game logic here.
 #	pass
+func move():
+	position.y= rand_range(300,550)
+	pass
 
 func activate():
 	fire()

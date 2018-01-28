@@ -27,4 +27,5 @@ mouse_right=[ Object(InputEventMouseButton,"resource_local_to_scene":false,"reso
 
 [rendering]
 
+environment/default_clear_color=Color( 0.886719, 0.883255, 0.883255, 1 )
 environment/default_environment="res://default_env.tres"

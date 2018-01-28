@@ -16,8 +16,8 @@ func _ready():
 	pass
 
 func _input(event):
-	if event.is_action_pressed("ui_accept") and  event.is_pressed():
-		activated()
+#	if event.is_action_pressed("ui_accept") and  event.is_pressed():
+#		activated()
 	pass
 
 #func _process(delta):

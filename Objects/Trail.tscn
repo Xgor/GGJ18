@@ -1,13 +1,14 @@
 [gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://Sprites/Bumper.png" type="Texture" id=1]
+[ext_resource path="res://Sprites/WhiteBall.png" type="Texture" id=1]
 
 [node name="Trail" type="Sprite" groups=[
 "Trail",
 ]]
 
 visible = false
-modulate = Color( 1, 1, 1, 0.342549 )
+modulate = Color( 0.730469, 0.730469, 0.730469, 1 )
+scale = Vector2( 0.75, 0.75 )
 z_index = -5
 texture = ExtResource( 1 )
 _sections_unfolded = [ "Transform", "Visibility", "Z Index" ]
