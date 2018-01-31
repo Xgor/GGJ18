@@ -6,6 +6,7 @@ extends RigidBody2D
 onready var TweenNode = get_node("Tween")
 var trail
 var s
+onready var tree =get_tree()
 func _ready():
 	# Called every time the node is added to the scene.
 	# Initial
@@ -28,7 +29,7 @@ func _process(delta):
 	
 	s = scale
 	if position.y > 1000 or linear_velocity.length_squared() < 1:
-		get_tree().call_group("GameManager", "stop")
+		tree.call_group("GameManager", "stop")
 	pass
    
 
@@ -52,13 +53,16 @@ func _on_Ball_body_shape_entered( body_id, body, body_shape, local_shape ):
 
 
 func _on_Timer_timeout():
-	var o = get_node("Trail").duplicate()
-	o.position = position
-#	o.scale = Vector2(0.5,0.5)
-	get_parent().call_deferred("add_child",o)
+	tree.call_group("Draw", "drawTrail",position,32*(20-TweenNode.tell())/20)
+	
+	#var o = get_node("Trail").duplicate()
+	
+	#o.position = position
+	#o.scale = Vector2(0.5,0.5)
+#	print(position)
+	#get_parent().call_deferred("add_child",o)
 	#print(scale)
 	pass # replace with function body
-
 
 func _on_Tween_tween_completed( object, key ):
 	TweenNode.stop()

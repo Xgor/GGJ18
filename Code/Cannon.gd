@@ -32,9 +32,11 @@ func deativate():
 
 func fire():
 	var o =object.instance()
-	call_deferred("add_child",o)
-	o.position = get_node("FirePos").position
+	
+	get_tree().root.call_deferred("add_child",o)
+	o.position = get_node("FirePos").global_position
 	
 	o.fire(rotation,firePower)
+	get_tree().call_group("Draw", "newTrail")
 	
 	pass
