@@ -11,18 +11,37 @@ func _ready():
 	# Called every time the node is added to the scene.
 	# Initialization here
 	sprite = get_node("Sprite")
-	selectObject("peg",12)
+	#selectObject("peg",12)
+	object = get_node("Peg")
+	get_node("CollisionShape2D").shape.radius = 12
 	pass
 
 func _input(event):
+	if (event is InputEventMouseButton):
+		#print("Mouse Click/Unclick at: ",event.position)
+		#position+= event.relative 
+		pass
+	elif (event is InputEventMouseMotion):
+		#print("Mouse Motion at: ",event.position)
+		#print("Mouse Motion at: ",event.relative)
+		#position = event.position 
+		get_tree().call_group("GameManager", "message",str(position))
+		position.x= event.position.x
+		position.y= event.position.y 
+		#print(position)
+	
 	if event.is_pressed() and active:
-		if event.is_action_pressed("mouse_left") and canPlace():
-			var o =object.instance()
+		#and canPlace()
+		if event.is_action_pressed("mouse_left") :
+			print("hello")
+			var o =object.duplicate()
+			o.show()
 			get_parent().add_child(o)
 			o.position = position
 			get_tree().call_group("GameManager", "activated")
 			get_tree().call_group("Tutorial", "hide")
-			
+	
+	
 	#	elif event.is_action_pressed("mouse_right"):
 	#		object = null
 	#		sprite.texture = null
@@ -31,15 +50,18 @@ func _input(event):
 func _process(delta):
 	# Called every frame. Delta is time since last frame.
 	# Update game logic here.
-	
-	position =get_viewport().get_mouse_position()
+	#position =get_global_mouse_position()
 	if active:
 		if canPlace():
-			sprite.show()
+			#sprite.show()
+		
 		##	sprite.modulate = Color(0,1,0,0.5)
+			pass
 		else:
-			sprite.hide()
+			#sprite.hide()
+		
 	#	sprite.modulate = Color(1,0,0,0.5)
+			pass
 	pass
 
 func canPlace():

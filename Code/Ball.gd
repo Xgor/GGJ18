@@ -52,9 +52,8 @@ func _on_Ball_body_shape_entered( body_id, body, body_shape, local_shape ):
 
 
 func _on_Timer_timeout():
-	var o = trail.instance()
+	var o = get_node("Trail").duplicate()
 	o.position = position
-	print(s)
 #	o.scale = Vector2(0.5,0.5)
 	get_parent().call_deferred("add_child",o)
 	#print(scale)

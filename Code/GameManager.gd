@@ -16,6 +16,12 @@ func _ready():
 #	# Called every frame. Delta is time since last frame.
 #	# Update game logic here.
 #	pass
+
+func _input(event):
+	if event.is_action_pressed("quit"):
+		get_tree().quit()
+	pass
+
 func activated():
 	running = !running
 	if running:
@@ -27,6 +33,11 @@ func activated():
 func updateText():
 	get_node("Score").text = "Score " + str(score)
 	get_node("Pegs").text = "Pegs " + str(pegs)
+
+func message(stn):
+	get_node("Test").text = stn
+#	g.test = str
+	pass
 
 func run():
 #	tex.texture = spr_stop
@@ -56,7 +67,9 @@ func stop():
 	get_tree().call_group("Balls", "queue_free")
 	get_tree().call_group("Trail", "show")
 	get_tree().call_group("Cannon", "deactivate")
+	
 	get_tree().call_group("Picker", "activate")
+	
 	running = false
 	updateText()
 	if pegs == 0:
