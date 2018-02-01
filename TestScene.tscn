@@ -1,33 +1,33 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=19 format=2]
 
-[ext_resource path="res://Objects/Cannon.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Code/ObjectPlacer.gd" type="Script" id=2]
-[ext_resource path="res://Sprites/WhitePeg.png" type="Texture" id=3]
-[ext_resource path="res://Objects/Peg.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Code/Goal.gd" type="Script" id=5]
-[ext_resource path="res://Sprites/WhiteGoal.png" type="Texture" id=6]
-[ext_resource path="res://Code/GameManager.gd" type="Script" id=7]
-[ext_resource path="res://LemonMilk.otf" type="DynamicFontData" id=8]
-[ext_resource path="res://Sprites/Wood.png" type="Texture" id=9]
-[ext_resource path="res://Code/Trails.gd" type="Script" id=10]
+[ext_resource path="res://LemonMilk.otf" type="DynamicFontData" id=1]
+[ext_resource path="res://Code/GameManager.gd" type="Script" id=2]
+[ext_resource path="res://Objects/Cannon.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Code/ObjectPlacer.gd" type="Script" id=4]
+[ext_resource path="res://Sprites/WhitePeg.png" type="Texture" id=5]
+[ext_resource path="res://Objects/Peg.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Code/Goal.gd" type="Script" id=7]
+[ext_resource path="res://Sprites/WhiteGoal.png" type="Texture" id=8]
+[ext_resource path="res://Code/Trails.gd" type="Script" id=9]
+[ext_resource path="res://Sprites/WhiteBall.png" type="Texture" id=10]
 
-[sub_resource type="CircleShape2D" id=1]
-
-custom_solver_bias = 0.0
-radius = 10.0
-
-[sub_resource type="CircleShape2D" id=2]
-
-custom_solver_bias = 0.0
-radius = 16.2322
-
-[sub_resource type="DynamicFont" id=3]
+[sub_resource type="DynamicFont" id=1]
 
 size = 60
 use_mipmaps = false
 use_filter = false
-font_data = ExtResource( 8 )
+font_data = ExtResource( 1 )
 _sections_unfolded = [ "Font", "Settings" ]
+
+[sub_resource type="CircleShape2D" id=2]
+
+custom_solver_bias = 0.0
+radius = 10.0
+
+[sub_resource type="CircleShape2D" id=3]
+
+custom_solver_bias = 0.0
+radius = 16.2322
 
 [sub_resource type="RectangleShape2D" id=4]
 
@@ -38,283 +38,66 @@ extents = Vector2( 17.0284, 450.79 )
 
 resource_local_to_scene = true
 flags = 0
-viewport_path = NodePath("Viewport")
+viewport_path = NodePath("Trail/TrailViewport")
+
+[sub_resource type="Curve" id=6]
+
+min_value = 0.0
+max_value = 1.0
+bake_resolution = 100
+_data = [ Vector2( 0, 0.521484 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=7]
+
+flags = 4
+width = 2048
+curve = SubResource( 6 )
+
+[sub_resource type="ParticlesMaterial" id=8]
+
+render_priority = 0
+trail_divisor = 1
+emission_shape = 0
+flag_align_y = false
+flag_rotate_y = false
+flag_disable_z = true
+spread = 180.0
+flatness = 0.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 200.0
+initial_velocity_random = 0.0
+angular_velocity = 0.0
+angular_velocity_random = 0.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+linear_accel = 0.0
+linear_accel_random = 0.0
+radial_accel = 0.0
+radial_accel_random = 0.0
+tangential_accel = 0.0
+tangential_accel_random = 0.0
+damping = 0.0
+damping_random = 0.0
+angle = 0.0
+angle_random = 0.0
+scale = 1.0
+scale_random = 0.0
+scale_curve = SubResource( 7 )
+color = Color( 1, 1, 1, 1 )
+hue_variation = 0.0
+hue_variation_random = 0.0
+anim_speed = 0.0
+anim_speed_random = 0.0
+anim_offset = 0.0
+anim_offset_random = 0.0
+anim_loop = false
+_sections_unfolded = [ "Damping", "Emission Shape", "Initial Velocity", "Scale" ]
 
 [node name="Node2D" type="Node2D" index="0"]
 
 _sections_unfolded = [ "Transform", "Visibility", "Z Index" ]
 
-[node name="Trail" type="Node2D" parent="." index="0"]
-
-[node name="Cannon" parent="." index="1" instance=ExtResource( 1 )]
-
-position = Vector2( -26.6355, 300 )
-rotation = -0.785398
-firePower = 600
-
-[node name="Timer" type="Timer" parent="Cannon" index="2"]
-
-process_mode = 1
-wait_time = 1.0
-one_shot = false
-autostart = false
-
-[node name="ObjectPlacer" type="Area2D" parent="." index="2" groups=[
-"Picker",
-]]
-
-editor/display_folded = true
-input_pickable = true
-gravity_vec = Vector2( 0, 1 )
-gravity = 98.0
-linear_damp = 0.1
-angular_damp = 1.0
-audio_bus_override = false
-audio_bus_name = "Master"
-script = ExtResource( 2 )
-_sections_unfolded = [ "Transform" ]
-
-[node name="Sprite" type="Sprite" parent="ObjectPlacer" index="0"]
-
-modulate = Color( 0.341797, 0.390625, 0.385574, 1 )
-z_index = 23
-texture = ExtResource( 3 )
-_sections_unfolded = [ "Transform", "Visibility", "Z Index" ]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ObjectPlacer" index="1"]
-
-shape = SubResource( 1 )
-_sections_unfolded = [ "Transform", "Visibility" ]
-
-[node name="Peg" parent="ObjectPlacer" index="2" instance=ExtResource( 4 )]
-
-visible = false
-position = Vector2( -1200, 0 )
-
-[node name="Goal" type="Area2D" parent="." index="3"]
-
-editor/display_folded = true
-position = Vector2( 926.517, 213.618 )
-input_pickable = true
-gravity_vec = Vector2( 0, 1 )
-gravity = 98.0
-linear_damp = 0.1
-angular_damp = 1.0
-audio_bus_override = false
-audio_bus_name = "Master"
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="Sprite" type="Sprite" parent="Goal" index="0"]
-
-modulate = Color( 0.929412, 0.564706, 0.611765, 1 )
-texture = ExtResource( 6 )
-_sections_unfolded = [ "Visibility" ]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Goal" index="1"]
-
-shape = SubResource( 2 )
-
-[node name="GameManager" type="Node2D" parent="." index="4" groups=[
-"GameManager",
-]]
-
-editor/display_folded = true
-script = ExtResource( 7 )
-_sections_unfolded = [ "Transform", "Visibility" ]
-
-[node name="Score" type="Label" parent="GameManager" index="0"]
-
-modulate = Color( 0, 0, 0, 1 )
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 29.0
-margin_top = 422.0
-margin_right = 284.0
-margin_bottom = 508.0
-rect_pivot_offset = Vector2( 0, 0 )
-mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 4
-custom_fonts/font = SubResource( 3 )
-text = "Score 0"
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-_sections_unfolded = [ "Anchor", "BBCode", "Caret", "Grow Direction", "Hint", "Margin", "Placeholder", "Rect", "Size Flags", "Theme", "Visibility", "custom_fonts", "custom_styles" ]
-
-[node name="Test" type="Label" parent="GameManager" index="1"]
-
-modulate = Color( 0, 0, 0, 1 )
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 16.0
-margin_top = 48.0
-margin_right = 271.0
-margin_bottom = 134.0
-rect_pivot_offset = Vector2( 0, 0 )
-mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 4
-custom_fonts/font = SubResource( 3 )
-text = "Test"
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-_sections_unfolded = [ "Anchor", "BBCode", "Caret", "Grow Direction", "Hint", "Margin", "Placeholder", "Rect", "Size Flags", "Theme", "Visibility", "custom_fonts", "custom_styles" ]
-
-[node name="Game Over" type="Label" parent="GameManager" index="2"]
-
-visible = false
-modulate = Color( 0, 0, 0, 1 )
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 306.0
-margin_top = 196.0
-margin_right = 671.0
-margin_bottom = 282.0
-rect_pivot_offset = Vector2( 0, 0 )
-mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 4
-custom_fonts/font = SubResource( 3 )
-text = "Game Over"
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-_sections_unfolded = [ "Anchor", "BBCode", "Caret", "Grow Direction", "Hint", "Margin", "Placeholder", "Rect", "Size Flags", "Theme", "Visibility", "custom_fonts", "custom_styles" ]
-
-[node name="Pegs" type="Label" parent="GameManager" index="3"]
-
-modulate = Color( 0, 0, 0, 1 )
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 779.0
-margin_right = 985.0
-margin_bottom = 86.0
-rect_pivot_offset = Vector2( 0, 0 )
-mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 4
-custom_fonts/font = SubResource( 3 )
-text = "Pegs 5"
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-_sections_unfolded = [ "Anchor", "BBCode", "Caret", "Grow Direction", "Hint", "Margin", "Placeholder", "Rect", "Size Flags", "Theme", "Visibility", "custom_fonts", "custom_styles" ]
-
-[node name="Timer" type="Timer" parent="GameManager" index="4"]
-
-process_mode = 1
-wait_time = 3.0
-one_shot = false
-autostart = false
-
-[node name="Walls" type="Node2D" parent="." index="5"]
-
-editor/display_folded = true
-
-[node name="Wall" type="StaticBody2D" parent="Walls" index="0"]
-
-editor/display_folded = true
-position = Vector2( 12.3033, 166.094 )
-input_pickable = false
-collision_layer = 1
-collision_mask = 1
-constant_linear_velocity = Vector2( 0, 0 )
-constant_angular_velocity = 0.0
-friction = 1.0
-bounce = 1.0
-__meta__ = {
-"_edit_lock_": true
-}
-
-[node name="Sprite2" type="Sprite" parent="Walls/Wall" index="0"]
-
-visible = false
-texture = ExtResource( 9 )
-region_enabled = true
-region_rect = Rect2( 0, 0, 32, 1000 )
-_sections_unfolded = [ "Animation", "Offset", "Region", "Transform", "Visibility", "Z Index" ]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Wall" index="1"]
-
-position = Vector2( -32.7279, -2.51758 )
-shape = SubResource( 4 )
-
-[node name="Wall3" type="StaticBody2D" parent="Walls" index="1"]
-
-position = Vector2( 12.3033, 166.094 )
-input_pickable = false
-collision_layer = 1
-collision_mask = 1
-constant_linear_velocity = Vector2( 0, 0 )
-constant_angular_velocity = 0.0
-friction = 1.0
-bounce = 1.0
-_sections_unfolded = [ "Transform" ]
-__meta__ = {
-"_edit_lock_": true
-}
-
-[node name="Sprite2" type="Sprite" parent="Walls/Wall3" index="0"]
-
-visible = false
-texture = ExtResource( 9 )
-region_enabled = true
-region_rect = Rect2( 0, 0, 32, 1000 )
-_sections_unfolded = [ "Animation", "Offset", "Region", "Transform", "Visibility", "Z Index" ]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Wall3" index="1"]
-
-position = Vector2( 495.234, -171.995 )
-scale = Vector2( 31.1544, 0.0421635 )
-shape = SubResource( 4 )
-
-[node name="Wall2" type="StaticBody2D" parent="Walls" index="2"]
-
-editor/display_folded = true
-position = Vector2( 1006.82, 170.195 )
-input_pickable = false
-collision_layer = 1
-collision_mask = 1
-constant_linear_velocity = Vector2( 0, 0 )
-constant_angular_velocity = 0.0
-friction = 1.0
-bounce = 1.0
-__meta__ = {
-"_edit_lock_": true
-}
-
-[node name="Sprite2" type="Sprite" parent="Walls/Wall2" index="0"]
-
-visible = false
-texture = ExtResource( 9 )
-region_enabled = true
-region_rect = Rect2( 0, 0, 32, 1000 )
-_sections_unfolded = [ "Animation", "Offset", "Region", "Transform", "Visibility", "Z Index" ]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Wall2" index="1"]
-
-position = Vector2( 37.763, 2.51752 )
-shape = SubResource( 4 )
-
-[node name="Tutorial" type="Control" parent="." index="6" groups=[
+[node name="Tutorial" type="Control" parent="." index="0" groups=[
 "Tutorial",
 ]]
 
@@ -348,7 +131,7 @@ mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 1 )
 text = "Make ball hit these"
 percent_visible = 1.0
 lines_skipped = 0
@@ -372,7 +155,7 @@ mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 1 )
 text = "Place pegs to bounce the ball"
 percent_visible = 1.0
 lines_skipped = 0
@@ -396,14 +179,267 @@ mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 1 )
 text = "Ball Fires from here"
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 _sections_unfolded = [ "Anchor", "BBCode", "Caret", "Grow Direction", "Hint", "Margin", "Placeholder", "Rect", "Size Flags", "Theme", "Visibility", "custom_fonts", "custom_styles" ]
 
-[node name="Camera2D" type="Camera2D" parent="." index="7"]
+[node name="GameManager" type="Control" parent="." index="1" groups=[
+"GameManager",
+]]
+
+editor/display_folded = true
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+rect_pivot_offset = Vector2( 0, 0 )
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+script = ExtResource( 2 )
+_sections_unfolded = [ "Transform", "Visibility" ]
+
+[node name="Score" type="Label" parent="GameManager" index="0"]
+
+modulate = Color( 0, 0, 0, 1 )
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 11.0
+margin_top = 2.0
+margin_right = 266.0
+margin_bottom = 88.0
+rect_pivot_offset = Vector2( 0, 0 )
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_fonts/font = SubResource( 1 )
+text = "Score 0"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "Anchor", "BBCode", "Caret", "Grow Direction", "Hint", "Margin", "Placeholder", "Rect", "Size Flags", "Theme", "Visibility", "custom_fonts", "custom_styles" ]
+
+[node name="Test" type="Label" parent="GameManager" index="1"]
+
+modulate = Color( 0, 0, 0, 1 )
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 86.0
+margin_top = 1098.0
+margin_right = 341.0
+margin_bottom = 1184.0
+rect_pivot_offset = Vector2( 0, 0 )
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_fonts/font = SubResource( 1 )
+text = "Test"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "Anchor", "BBCode", "Caret", "Grow Direction", "Hint", "Margin", "Placeholder", "Rect", "Size Flags", "Theme", "Visibility", "custom_fonts", "custom_styles" ]
+
+[node name="Game Over" type="Label" parent="GameManager" index="2"]
+
+visible = false
+modulate = Color( 0, 0, 0, 1 )
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 306.0
+margin_top = 196.0
+margin_right = 671.0
+margin_bottom = 282.0
+rect_pivot_offset = Vector2( 0, 0 )
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_fonts/font = SubResource( 1 )
+text = "Game Over"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "Anchor", "BBCode", "Caret", "Grow Direction", "Hint", "Margin", "Placeholder", "Rect", "Size Flags", "Theme", "Visibility", "custom_fonts", "custom_styles" ]
+
+[node name="Pegs" type="Label" parent="GameManager" index="3"]
+
+modulate = Color( 0, 0, 0, 1 )
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 779.0
+margin_right = 985.0
+margin_bottom = 86.0
+rect_pivot_offset = Vector2( 0, 0 )
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_fonts/font = SubResource( 1 )
+text = "Pegs 5"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "Anchor", "BBCode", "Caret", "Grow Direction", "Hint", "Margin", "Placeholder", "Rect", "Size Flags", "Theme", "Visibility", "custom_fonts", "custom_styles" ]
+
+[node name="Timer" type="Timer" parent="GameManager" index="4"]
+
+process_mode = 1
+wait_time = 3.0
+one_shot = false
+autostart = false
+
+[node name="Cannon" parent="." index="2" instance=ExtResource( 3 )]
+
+editor/display_folded = true
+position = Vector2( -26.6355, 300 )
+rotation = -0.785398
+firePower = 600
+
+[node name="Timer" type="Timer" parent="Cannon" index="2"]
+
+process_mode = 1
+wait_time = 1.0
+one_shot = false
+autostart = false
+
+[node name="ObjectPlacer" type="Area2D" parent="." index="3" groups=[
+"Picker",
+]]
+
+editor/display_folded = true
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+script = ExtResource( 4 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="Sprite" type="Sprite" parent="ObjectPlacer" index="0"]
+
+modulate = Color( 0.341797, 0.390625, 0.385574, 1 )
+z_index = 23
+texture = ExtResource( 5 )
+_sections_unfolded = [ "Transform", "Visibility", "Z Index" ]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ObjectPlacer" index="1"]
+
+shape = SubResource( 2 )
+_sections_unfolded = [ "Transform", "Visibility" ]
+
+[node name="Peg" parent="ObjectPlacer" index="2" instance=ExtResource( 6 )]
+
+visible = false
+position = Vector2( -1200, 0 )
+_sections_unfolded = [ "Collision", "Pickable", "Transform", "Visibility" ]
+
+[node name="Goal" type="Area2D" parent="." index="4"]
+
+editor/display_folded = true
+position = Vector2( 926.517, 213.618 )
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+script = ExtResource( 7 )
+_sections_unfolded = [ "Transform" ]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Goal" index="0"]
+
+texture = ExtResource( 8 )
+centered = false
+_sections_unfolded = [ "Offset", "Visibility" ]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Goal" index="1"]
+
+position = Vector2( 16, 16 )
+shape = SubResource( 3 )
+_sections_unfolded = [ "Transform", "Z Index" ]
+
+[node name="Walls" type="Node2D" parent="." index="5"]
+
+[node name="Wall" type="StaticBody2D" parent="Walls" index="0"]
+
+position = Vector2( 12.3033, 166.094 )
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 1.0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Wall" index="0"]
+
+position = Vector2( -32.7279, -2.51758 )
+shape = SubResource( 4 )
+
+[node name="Wall3" type="StaticBody2D" parent="Walls" index="1"]
+
+position = Vector2( 12.3033, 166.094 )
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 1.0
+_sections_unfolded = [ "Transform" ]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Wall3" index="0"]
+
+position = Vector2( 495.234, -171.995 )
+scale = Vector2( 31.1544, 0.0421635 )
+shape = SubResource( 4 )
+
+[node name="Wall2" type="StaticBody2D" parent="Walls" index="2"]
+
+position = Vector2( 1006.82, 170.195 )
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 1.0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Wall2" index="0"]
+
+position = Vector2( 37.763, 2.51752 )
+shape = SubResource( 4 )
+
+[node name="Camera2D" type="Camera2D" parent="." index="6"]
 
 anchor_mode = 0
 rotating = false
@@ -429,14 +465,16 @@ editor_draw_limits = false
 editor_draw_drag_margin = false
 _sections_unfolded = [ "Editor", "Offset", "Smoothing" ]
 
-[node name="Sprite" type="Sprite" parent="." index="8"]
+[node name="Trail" type="Node2D" parent="." index="7"]
+
+[node name="TrailSprite" type="Sprite" parent="Trail" index="0"]
 
 z_index = -100
 texture = SubResource( 5 )
 centered = false
 _sections_unfolded = [ "Animation", "Offset", "Region", "Transform", "Z Index" ]
 
-[node name="Viewport" type="Viewport" parent="." index="9"]
+[node name="TrailViewport" type="Viewport" parent="Trail" index="1"]
 
 arvr = true
 size = Vector2( 1024, 600 )
@@ -463,16 +501,40 @@ shadow_atlas_quad_2 = 3
 shadow_atlas_quad_3 = 4
 _sections_unfolded = [ "Audio Listener", "GUI", "Physics", "Render Target", "Rendering", "Shadow Atlas" ]
 
-[node name="DrawTrail" type="Node2D" parent="Viewport" index="0" groups=[
+[node name="DrawTrail" type="Node2D" parent="Trail/TrailViewport" index="0" groups=[
 "Draw",
 ]]
 
 z_index = -32
-script = ExtResource( 10 )
+script = ExtResource( 9 )
 _sections_unfolded = [ "Material", "Transform", "Visibility", "Z Index" ]
 
-[connection signal="body_entered" from="Goal" to="Goal" method="_on_Goal_body_entered"]
+[node name="Particles2D" type="Particles2D" parent="." index="8"]
+
+visible = false
+position = Vector2( 155.081, 180.44 )
+emitting = false
+amount = 10
+lifetime = 0.4
+one_shot = true
+preprocess = 0.0
+speed_scale = 1.0
+explosiveness = 0.5
+randomness = 0.0
+fixed_fps = 0
+fract_delta = true
+visibility_rect = Rect2( -100, -100, 200, 200 )
+local_coords = true
+draw_order = 0
+process_material = SubResource( 8 )
+texture = ExtResource( 10 )
+normal_map = null
+h_frames = 1
+v_frames = 1
+_sections_unfolded = [ "Material", "Process Material", "Textures", "Time" ]
 
 [connection signal="timeout" from="GameManager/Timer" to="GameManager" method="_on_Timer_timeout"]
+
+[connection signal="body_entered" from="Goal" to="Goal" method="_on_Goal_body_entered"]
 
 

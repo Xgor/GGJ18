@@ -12,7 +12,8 @@ func _ready():
 	# Initial
 	#add_force(Vector2(0,0), Vector2(0,1)*400)
 	trail =load( "res://Objects/trail.tscn")
-	TweenNode.interpolate_property(self, "scale", Vector2(1, 1), Vector2(0.0, 0.0), 20,Tween.TRANS_LINEAR,Tween.EASE_IN)
+	s = Vector2(1,1)
+	TweenNode.interpolate_property(self, "s", Vector2(1, 1), Vector2(0.0, 0.0), 20,Tween.TRANS_LINEAR,Tween.EASE_IN)
 	TweenNode.start()
 	pass
 
@@ -20,14 +21,16 @@ func fire(rot,firePower):
 	var angle = Vector2(cos(rot), sin(rot))
 	set_axis_velocity(angle*firePower)
 	#add_force(Vector2(0,0), angle*400)
-	
+	#modulate = get_node(".../Trail/TrailViewport/DrawTrail").getCol()
 	pass
 
 func _process(delta):
 	# Called every frame. Delta is time since last frame.
 	# Update game logic here.
 	
-	s = scale
+	scale = s
+	get_node("CollisionShape2D").scale = s
+	#s = scale
 	if position.y > 1000 or linear_velocity.length_squared() < 1:
 		tree.call_group("GameManager", "stop")
 	pass
@@ -37,12 +40,15 @@ func _process(delta):
 
 func _on_Ball_body_entered( body ):
 	##if body.name == "Bumper":
-	for group in body.get_groups ():
-		if group == "Bumper":
-			var angle = position-body.position
-			angle =angle.normalized()
-			linear_velocity = angle*500
-			#set_axis_velocity(angle*10)
+	
+	#for group in body.get_groups ():
+		#if group == "Pegs":
+			#body.removeDurability()
+		#if group == "Bumper":
+		#	var angle = position-body.position
+		#	angle =angle.normalized()
+		#	linear_velocity = angle*500
+		#	#set_axis_velocity(angle*10)
 	
 	pass # replace with function body
 
@@ -65,5 +71,5 @@ func _on_Timer_timeout():
 	pass # replace with function body
 
 func _on_Tween_tween_completed( object, key ):
-	TweenNode.stop()
+	#TweenNode.stop()
 	pass # replace with function body

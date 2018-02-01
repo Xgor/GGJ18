@@ -7,10 +7,10 @@ path="res://.import/WhiteGoal.png-ed3245e253c403acb9fcc4470c17b36e.stex"
 [deps]
 
 source_file="res://Sprites/WhiteGoal.png"
-source_md5="1eabda05773401a4d4bd689ece6f970e"
+source_md5="ad30be1964ffe94ae9fa579b3dd7b078"
 
 dest_files=[ "res://.import/WhiteGoal.png-ed3245e253c403acb9fcc4470c17b36e.stex" ]
-dest_md5="c6a178b3bea418d04db8463059a10ca8"
+dest_md5="bbe994537ce292ee473d6bb7c2801d25"
 
 [params]
 
