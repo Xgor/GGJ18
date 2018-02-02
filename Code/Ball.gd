@@ -31,7 +31,7 @@ func _process(delta):
 	scale = s
 	get_node("CollisionShape2D").scale = s
 	#s = scale
-	if position.y > 1000 or linear_velocity.length_squared() < 1:
+	if position.y > 1000 or linear_velocity.length_squared() < 1 or s.x ==0:
 		tree.call_group("GameManager", "stop")
 	pass
    
@@ -39,16 +39,12 @@ func _process(delta):
 
 
 func _on_Ball_body_entered( body ):
+	get_node("BounceSound").play()
 	##if body.name == "Bumper":
 	
 	#for group in body.get_groups ():
 		#if group == "Pegs":
 			#body.removeDurability()
-		#if group == "Bumper":
-		#	var angle = position-body.position
-		#	angle =angle.normalized()
-		#	linear_velocity = angle*500
-		#	#set_axis_velocity(angle*10)
 	
 	pass # replace with function body
 
@@ -69,6 +65,9 @@ func _on_Timer_timeout():
 	#get_parent().call_deferred("add_child",o)
 	#print(scale)
 	pass # replace with function body
+
+func drawSplat():
+	tree.call_group("Draw", "drawSplat",position,48)
 
 func _on_Tween_tween_completed( object, key ):
 	#TweenNode.stop()

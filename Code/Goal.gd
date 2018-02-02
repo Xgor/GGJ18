@@ -18,12 +18,12 @@ func _process(delta):
 
 
 func _on_Goal_body_entered( body ):
-	tree.call_group("Draw", "drawSplat",position,48)
-	
+	#tree.call_group("Draw", "drawSplat",global_position,48)
+	tree.call_group("Balls", "drawSplat")
 	
 	get_tree().call_group("GameManager", "getPoint")
 	position.x = rand_range(200,900)
 	position.y = rand_range(200,500)
-	
+	$HitSound.play()
 	
 	pass # replace with function body

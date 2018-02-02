@@ -19,7 +19,7 @@ func _ready():
 #	# Update game logic here.
 #	pass
 func move():
-	position.y= rand_range(300,550)
+	position.y= rand_range(300,500)
 	pass
 
 func activate():
@@ -33,6 +33,7 @@ func deativate():
 func fire():
 	var o =object.instance()
 	
+	$Sound.play()
 	get_tree().root.call_deferred("add_child",o)
 	o.position = get_node("FirePos").global_position
 	

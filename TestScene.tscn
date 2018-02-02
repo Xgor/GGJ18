@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://LemonMilk.otf" type="DynamicFontData" id=1]
 [ext_resource path="res://Code/GameManager.gd" type="Script" id=2]
@@ -6,10 +6,12 @@
 [ext_resource path="res://Code/ObjectPlacer.gd" type="Script" id=4]
 [ext_resource path="res://Sprites/WhitePeg.png" type="Texture" id=5]
 [ext_resource path="res://Objects/Peg.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Code/Goal.gd" type="Script" id=7]
-[ext_resource path="res://Sprites/WhiteGoal.png" type="Texture" id=8]
-[ext_resource path="res://Code/Trails.gd" type="Script" id=9]
-[ext_resource path="res://Sprites/WhiteBall.png" type="Texture" id=10]
+[ext_resource path="res://Audio/wood_solid_small_02.wav" type="AudioStream" id=7]
+[ext_resource path="res://Code/Goal.gd" type="Script" id=8]
+[ext_resource path="res://Sprites/WhiteGoal.png" type="Texture" id=9]
+[ext_resource path="res://Audio/mud_medium_01.wav" type="AudioStream" id=10]
+[ext_resource path="res://Code/Trails.gd" type="Script" id=11]
+[ext_resource path="res://Sprites/WhiteBall.png" type="Texture" id=12]
 
 [sub_resource type="DynamicFont" id=1]
 
@@ -349,9 +351,18 @@ visible = false
 position = Vector2( -1200, 0 )
 _sections_unfolded = [ "Collision", "Pickable", "Transform", "Visibility" ]
 
+[node name="PlaceSound" type="AudioStreamPlayer2D" parent="ObjectPlacer" index="3"]
+
+stream = ExtResource( 7 )
+volume_db = 0.0
+autoplay = false
+max_distance = 2000.0
+attenuation = 1.0
+bus = "Master"
+area_mask = 1
+
 [node name="Goal" type="Area2D" parent="." index="4"]
 
-editor/display_folded = true
 position = Vector2( 926.517, 213.618 )
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )
@@ -360,7 +371,7 @@ linear_damp = 0.1
 angular_damp = 1.0
 audio_bus_override = false
 audio_bus_name = "Master"
-script = ExtResource( 7 )
+script = ExtResource( 8 )
 _sections_unfolded = [ "Transform" ]
 __meta__ = {
 "_edit_group_": true
@@ -368,7 +379,7 @@ __meta__ = {
 
 [node name="Sprite" type="Sprite" parent="Goal" index="0"]
 
-texture = ExtResource( 8 )
+texture = ExtResource( 9 )
 centered = false
 _sections_unfolded = [ "Offset", "Visibility" ]
 
@@ -378,7 +389,19 @@ position = Vector2( 16, 16 )
 shape = SubResource( 3 )
 _sections_unfolded = [ "Transform", "Z Index" ]
 
+[node name="HitSound" type="AudioStreamPlayer2D" parent="Goal" index="2"]
+
+stream = ExtResource( 10 )
+volume_db = 0.0
+autoplay = false
+max_distance = 2000.0
+attenuation = 1.0
+bus = "Bounce"
+area_mask = 1
+
 [node name="Walls" type="Node2D" parent="." index="5"]
+
+editor/display_folded = true
 
 [node name="Wall" type="StaticBody2D" parent="Walls" index="0"]
 
@@ -506,7 +529,7 @@ _sections_unfolded = [ "Audio Listener", "GUI", "Physics", "Render Target", "Ren
 ]]
 
 z_index = -32
-script = ExtResource( 9 )
+script = ExtResource( 11 )
 _sections_unfolded = [ "Material", "Transform", "Visibility", "Z Index" ]
 
 [node name="Particles2D" type="Particles2D" parent="." index="8"]
@@ -527,7 +550,7 @@ visibility_rect = Rect2( -100, -100, 200, 200 )
 local_coords = true
 draw_order = 0
 process_material = SubResource( 8 )
-texture = ExtResource( 10 )
+texture = ExtResource( 12 )
 normal_map = null
 h_frames = 1
 v_frames = 1

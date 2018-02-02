@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/mud_medium_01.wav-a46061eff3d50a24af23e19d7392830c.sample"
+
+[deps]
+
+source_file="res://Audio/mud_medium_01.wav"
+source_md5="9169c78f2486518e759e625ec882ebfe"
+
+dest_files=[ "res://.import/mud_medium_01.wav-a46061eff3d50a24af23e19d7392830c.sample" ]
+dest_md5="9463754685f7a07c3fbb16f5d69dfed6"
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

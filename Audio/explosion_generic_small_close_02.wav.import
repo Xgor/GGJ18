@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/explosion_generic_small_close_02.wav-7a4e5f8e4a48d6a90dc6558d06dfa7d5.sample"
+
+[deps]
+
+source_file="res://Audio/explosion_generic_small_close_02.wav"
+source_md5="af352a0edb831d52dffaf0792e34cdad"
+
+dest_files=[ "res://.import/explosion_generic_small_close_02.wav-7a4e5f8e4a48d6a90dc6558d06dfa7d5.sample" ]
+dest_md5="720aa6d06bf853069ab68e8542f39518"
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

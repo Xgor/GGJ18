@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/wood_solid_small_02.wav-ee0a09b146185cd5285843a6a5e4fe65.sample"
+
+[deps]
+
+source_file="res://Audio/wood_solid_small_02.wav"
+source_md5="b4596b7f1dbd57ad1bc171dee89592b6"
+
+dest_files=[ "res://.import/wood_solid_small_02.wav-ee0a09b146185cd5285843a6a5e4fe65.sample" ]
+dest_md5="d07a36ce07d53125a73df2a855567caf"
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

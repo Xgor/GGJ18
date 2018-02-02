@@ -12,7 +12,7 @@ func _ready():
 	# Initialization here
 	tex = get_node("Icon")
 	spr_play = tex.texture
-	spr_stop = preload("res://Sprites/Stop.png")
+#	spr_stop = preload("res://Sprites/Stop.png")
 	pass
 
 func _input(event):

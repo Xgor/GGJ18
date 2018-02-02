@@ -40,6 +40,7 @@ func _input(event):
 			o.position = position
 			get_tree().call_group("GameManager", "activated")
 			get_tree().call_group("Tutorial", "hide")
+			get_node("PlaceSound").play()
 	
 	
 	#	elif event.is_action_pressed("mouse_right"):

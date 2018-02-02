@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/light_ball_01.wav-028f544c96c6948b14f2472032f3c5e9.sample"
+
+[deps]
+
+source_file="res://Audio/light_ball_01.wav"
+source_md5="ca5310ee808a85f6ae5b4177f9565f4f"
+
+dest_files=[ "res://.import/light_ball_01.wav-028f544c96c6948b14f2472032f3c5e9.sample" ]
+dest_md5="0fa2359272abf1808ffcc37e6c1faae0"
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0
