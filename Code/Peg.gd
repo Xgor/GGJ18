@@ -15,7 +15,6 @@ func _ready():
 #	pass
 
 func removeDurability():
-	print("ello")
 	durability -= 1
 	if durability < 1:
 		queue_free()

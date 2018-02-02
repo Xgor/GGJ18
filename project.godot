@@ -39,8 +39,7 @@ quit=[ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","
 
 [physics]
 
-common/fixed_fps=120
-2d/physics_engine="GodotPhysics"
+common/physics_fps=120
 
 [rendering]
 

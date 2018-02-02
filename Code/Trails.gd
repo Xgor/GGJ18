@@ -9,6 +9,7 @@ var splat = 0
 func _ready():
 	p =Vector2()
 	s = 0
+	
 
 func _draw():
 	var rand = Vector2()
@@ -25,7 +26,7 @@ func _draw():
 		c.s = 0.3
 	else:
 		draw_circle(p,s,c)
-		for i in range(20):
+		for i in range(10):
 			rand.x = rand_range(-1,1)
 			rand.y = rand_range(-1,1)
 			rand =rand.normalized()
@@ -52,7 +53,7 @@ func drawTrail(pos,trailSize):
 func newTrail(): 
   c.v = 1 
   c.s = 0.3 
-  c.h += 0.09
+  c.h += 0.29
 
 func drawSplat(pos,trailSize):
 	p = pos

@@ -31,7 +31,7 @@ func _process(delta):
 	scale = s
 	get_node("CollisionShape2D").scale = s
 	#s = scale
-	if position.y > 1000 or linear_velocity.length_squared() < 1 or s.x ==0:
+	if position.y > 1000 or s.x ==0:
 		tree.call_group("GameManager", "stop")
 	pass
    
@@ -61,9 +61,7 @@ func _on_Timer_timeout():
 	
 	#o.position = position
 	#o.scale = Vector2(0.5,0.5)
-#	print(position)
 	#get_parent().call_deferred("add_child",o)
-	#print(scale)
 	pass # replace with function body
 
 func drawSplat():
