@@ -1,24 +1,25 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=22 format=2]
 
-[ext_resource path="res://LemonMilk.otf" type="DynamicFontData" id=1]
-[ext_resource path="res://Code/GameManager.gd" type="Script" id=2]
-[ext_resource path="res://Objects/Cannon.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Code/ObjectPlacer.gd" type="Script" id=4]
-[ext_resource path="res://Sprites/WhitePeg.png" type="Texture" id=5]
-[ext_resource path="res://Objects/Peg.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Audio/wood_solid_small_02.wav" type="AudioStream" id=7]
-[ext_resource path="res://Code/Goal.gd" type="Script" id=8]
-[ext_resource path="res://Sprites/WhiteGoal.png" type="Texture" id=9]
-[ext_resource path="res://Audio/mud_medium_01.wav" type="AudioStream" id=10]
-[ext_resource path="res://Code/Trails.gd" type="Script" id=11]
-[ext_resource path="res://Sprites/WhiteBall.png" type="Texture" id=12]
+[ext_resource path="res://Code/Tutorial.gd" type="Script" id=1]
+[ext_resource path="res://LemonMilk.otf" type="DynamicFontData" id=2]
+[ext_resource path="res://Code/GameManager.gd" type="Script" id=3]
+[ext_resource path="res://Sprites/WhitePeg.png" type="Texture" id=4]
+[ext_resource path="res://Objects/Cannon.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Code/ObjectPlacer.gd" type="Script" id=6]
+[ext_resource path="res://Objects/Peg.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Audio/wood_solid_small_02.wav" type="AudioStream" id=8]
+[ext_resource path="res://Code/Goal.gd" type="Script" id=9]
+[ext_resource path="res://Sprites/WhiteGoal.png" type="Texture" id=10]
+[ext_resource path="res://Audio/mud_medium_01.wav" type="AudioStream" id=11]
+[ext_resource path="res://Code/Trails.gd" type="Script" id=12]
+[ext_resource path="res://Sprites/WhiteBall.png" type="Texture" id=13]
 
 [sub_resource type="DynamicFont" id=1]
 
 size = 60
 use_mipmaps = false
 use_filter = false
-font_data = ExtResource( 1 )
+font_data = ExtResource( 2 )
 _sections_unfolded = [ "Font", "Settings" ]
 
 [sub_resource type="CircleShape2D" id=2]
@@ -103,6 +104,7 @@ _sections_unfolded = [ "Transform", "Visibility", "Z Index" ]
 "Tutorial",
 ]]
 
+editor/display_folded = true
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -114,6 +116,11 @@ mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
+script = ExtResource( 1 )
+_sections_unfolded = [ "Margin", "Rect" ]
+__meta__ = {
+"_edit_group_": true
+}
 
 [node name="Make ball go here" type="Label" parent="Tutorial" index="0"]
 
@@ -138,6 +145,9 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 _sections_unfolded = [ "Anchor", "BBCode", "Caret", "Grow Direction", "Hint", "Margin", "Placeholder", "Rect", "Size Flags", "Theme", "Visibility", "custom_fonts", "custom_styles" ]
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="Title" type="Label" parent="Tutorial" index="1"]
 
@@ -163,6 +173,9 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 _sections_unfolded = [ "Anchor", "BBCode", "Caret", "Grow Direction", "Hint", "Margin", "Placeholder", "Rect", "Size Flags", "Theme", "Visibility", "custom_fonts", "custom_styles" ]
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="Tutorial" type="Label" parent="Tutorial" index="2"]
 
@@ -187,6 +200,9 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 _sections_unfolded = [ "Anchor", "BBCode", "Caret", "Grow Direction", "Hint", "Margin", "Placeholder", "Rect", "Size Flags", "Theme", "Visibility", "custom_fonts", "custom_styles" ]
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="Tutorial2" type="Label" parent="Tutorial" index="3"]
 
@@ -211,12 +227,23 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 _sections_unfolded = [ "Anchor", "BBCode", "Caret", "Grow Direction", "Hint", "Margin", "Placeholder", "Rect", "Size Flags", "Theme", "Visibility", "custom_fonts", "custom_styles" ]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Tween" type="Tween" parent="Tutorial" index="4"]
+
+repeat = false
+playback_process_mode = 1
+playback_speed = 1.0
+playback/active = false
+playback/repeat = false
+playback/speed = 1.0
 
 [node name="GameManager" type="Control" parent="." index="1" groups=[
 "GameManager",
 ]]
 
-editor/display_folded = true
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -226,7 +253,7 @@ mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
-script = ExtResource( 2 )
+script = ExtResource( 3 )
 _sections_unfolded = [ "Transform", "Visibility" ]
 
 [node name="Score" type="Label" parent="GameManager" index="0"]
@@ -299,27 +326,154 @@ lines_skipped = 0
 max_lines_visible = -1
 _sections_unfolded = [ "Anchor", "BBCode", "Caret", "Grow Direction", "Hint", "Margin", "Placeholder", "Rect", "Size Flags", "Theme", "Visibility", "custom_fonts", "custom_styles" ]
 
-[node name="Pegs" type="Label" parent="GameManager" index="3"]
+[node name="Pegs" type="Control" parent="GameManager" index="3"]
 
-modulate = Color( 0, 0, 0, 1 )
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 0.0
+margin_left = 987.0
+margin_top = 18.0
+margin_right = 1024.0
+margin_bottom = 58.0
+rect_pivot_offset = Vector2( 0, 0 )
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+_sections_unfolded = [ "Anchor", "Margin", "Rect" ]
+
+[node name="Peg" type="TextureRect" parent="GameManager/Pegs" index="0"]
+
+modulate = Color( 0.341176, 0.388235, 0.384314, 0.66298 )
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 779.0
-margin_right = 985.0
-margin_bottom = 86.0
+margin_right = 40.0
+margin_bottom = 40.0
 rect_pivot_offset = Vector2( 0, 0 )
-mouse_filter = 2
+mouse_filter = 1
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
-size_flags_vertical = 4
-custom_fonts/font = SubResource( 1 )
-text = "Pegs 5"
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-_sections_unfolded = [ "Anchor", "BBCode", "Caret", "Grow Direction", "Hint", "Margin", "Placeholder", "Rect", "Size Flags", "Theme", "Visibility", "custom_fonts", "custom_styles" ]
+size_flags_vertical = 1
+texture = ExtResource( 4 )
+stretch_mode = 0
+_sections_unfolded = [ "Focus", "Hint", "Mouse", "Rect", "Visibility" ]
+
+[node name="Peg2" type="TextureRect" parent="GameManager/Pegs" index="1"]
+
+modulate = Color( 0.341176, 0.388235, 0.384314, 0.66298 )
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.05
+anchor_bottom = 0.0
+margin_left = -32.0
+margin_right = 6.15
+margin_bottom = 40.0
+rect_pivot_offset = Vector2( 0, 0 )
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+texture = ExtResource( 4 )
+stretch_mode = 0
+_sections_unfolded = [ "Rect", "Visibility" ]
+
+[node name="Peg3" type="TextureRect" parent="GameManager/Pegs" index="2"]
+
+modulate = Color( 0.341176, 0.388235, 0.384314, 0.66298 )
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.05
+anchor_bottom = 0.0
+margin_left = -64.0
+margin_right = -25.85
+margin_bottom = 40.0
+rect_pivot_offset = Vector2( 0, 0 )
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+texture = ExtResource( 4 )
+stretch_mode = 0
+_sections_unfolded = [ "Rect", "Visibility" ]
+
+[node name="Peg4" type="TextureRect" parent="GameManager/Pegs" index="3"]
+
+modulate = Color( 0.341176, 0.388235, 0.384314, 0.66298 )
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.05
+anchor_bottom = 0.0
+margin_left = -96.0
+margin_right = -57.85
+margin_bottom = 40.0
+rect_pivot_offset = Vector2( 0, 0 )
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+texture = ExtResource( 4 )
+stretch_mode = 0
+_sections_unfolded = [ "Rect", "Visibility" ]
+
+[node name="Peg5" type="TextureRect" parent="GameManager/Pegs" index="4"]
+
+modulate = Color( 0.341176, 0.388235, 0.384314, 0.66298 )
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.05
+anchor_bottom = 0.0
+margin_left = -128.0
+margin_right = -89.85
+margin_bottom = 40.0
+rect_pivot_offset = Vector2( 0, 0 )
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+texture = ExtResource( 4 )
+stretch_mode = 0
+_sections_unfolded = [ "Rect", "Visibility" ]
+
+[node name="Peg6" type="TextureRect" parent="GameManager/Pegs" index="5"]
+
+modulate = Color( 0.341176, 0.388235, 0.384314, 0.66298 )
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.05
+anchor_bottom = 0.0
+margin_left = -160.0
+margin_right = -121.85
+margin_bottom = 40.0
+rect_pivot_offset = Vector2( 0, 0 )
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+texture = ExtResource( 4 )
+stretch_mode = 0
+_sections_unfolded = [ "Rect", "Visibility" ]
+
+[node name="Peg7" type="TextureRect" parent="GameManager/Pegs" index="6"]
+
+modulate = Color( 0.341176, 0.388235, 0.384314, 0.66298 )
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.05
+anchor_bottom = 0.0
+margin_left = -192.0
+margin_right = -153.85
+margin_bottom = 40.0
+rect_pivot_offset = Vector2( 0, 0 )
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+texture = ExtResource( 4 )
+stretch_mode = 0
+_sections_unfolded = [ "Rect", "Visibility" ]
 
 [node name="Timer" type="Timer" parent="GameManager" index="4"]
 
@@ -328,7 +482,7 @@ wait_time = 3.0
 one_shot = false
 autostart = false
 
-[node name="Cannon" parent="." index="2" instance=ExtResource( 3 )]
+[node name="Cannon" parent="." index="2" instance=ExtResource( 5 )]
 
 editor/display_folded = true
 position = Vector2( -26.6355, 300 )
@@ -346,7 +500,6 @@ autostart = false
 "Picker",
 ]]
 
-editor/display_folded = true
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
@@ -354,14 +507,18 @@ linear_damp = 0.1
 angular_damp = 1.0
 audio_bus_override = false
 audio_bus_name = "Master"
-script = ExtResource( 4 )
+script = ExtResource( 6 )
 _sections_unfolded = [ "Transform" ]
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
 
 [node name="Sprite" type="Sprite" parent="ObjectPlacer" index="0"]
 
 modulate = Color( 0.341797, 0.390625, 0.385574, 1 )
 z_index = 23
-texture = ExtResource( 5 )
+texture = ExtResource( 4 )
 _sections_unfolded = [ "Transform", "Visibility", "Z Index" ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ObjectPlacer" index="1"]
@@ -369,7 +526,7 @@ _sections_unfolded = [ "Transform", "Visibility", "Z Index" ]
 shape = SubResource( 2 )
 _sections_unfolded = [ "Transform", "Visibility" ]
 
-[node name="Peg" parent="ObjectPlacer" index="2" instance=ExtResource( 6 )]
+[node name="Peg" parent="ObjectPlacer" index="2" instance=ExtResource( 7 )]
 
 visible = false
 position = Vector2( -1200, 0 )
@@ -377,7 +534,7 @@ _sections_unfolded = [ "Collision", "Pickable", "Transform", "Visibility" ]
 
 [node name="PlaceSound" type="AudioStreamPlayer2D" parent="ObjectPlacer" index="3"]
 
-stream = ExtResource( 7 )
+stream = ExtResource( 8 )
 volume_db = 0.0
 autoplay = false
 max_distance = 2000.0
@@ -387,6 +544,7 @@ area_mask = 1
 
 [node name="Goal" type="Area2D" parent="." index="4"]
 
+editor/display_folded = true
 position = Vector2( 926.517, 213.618 )
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )
@@ -395,7 +553,7 @@ linear_damp = 0.1
 angular_damp = 1.0
 audio_bus_override = false
 audio_bus_name = "Master"
-script = ExtResource( 8 )
+script = ExtResource( 9 )
 _sections_unfolded = [ "Transform" ]
 __meta__ = {
 "_edit_group_": true
@@ -403,7 +561,7 @@ __meta__ = {
 
 [node name="Sprite" type="Sprite" parent="Goal" index="0"]
 
-texture = ExtResource( 9 )
+texture = ExtResource( 10 )
 centered = false
 _sections_unfolded = [ "Offset", "Visibility" ]
 
@@ -415,7 +573,7 @@ _sections_unfolded = [ "Transform", "Z Index" ]
 
 [node name="HitSound" type="AudioStreamPlayer2D" parent="Goal" index="2"]
 
-stream = ExtResource( 10 )
+stream = ExtResource( 11 )
 volume_db = 0.0
 autoplay = false
 max_distance = 2000.0
@@ -425,10 +583,13 @@ area_mask = 1
 
 [node name="Walls" type="Node2D" parent="." index="5"]
 
-editor/display_folded = true
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="Wall" type="StaticBody2D" parent="Walls" index="0"]
 
+editor/display_folded = true
 position = Vector2( 12.3033, 166.094 )
 input_pickable = false
 collision_layer = 1
@@ -469,6 +630,7 @@ shape = SubResource( 4 )
 
 [node name="Wall2" type="StaticBody2D" parent="Walls" index="2"]
 
+editor/display_folded = true
 position = Vector2( 1006.82, 170.195 )
 input_pickable = false
 collision_layer = 1
@@ -511,8 +673,16 @@ editor_draw_screen = true
 editor_draw_limits = false
 editor_draw_drag_margin = false
 _sections_unfolded = [ "Editor", "Offset", "Smoothing" ]
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="Trail" type="Node2D" parent="." index="7"]
+
+editor/display_folded = true
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="TrailSprite" type="Sprite" parent="Trail" index="0"]
 
@@ -553,7 +723,7 @@ _sections_unfolded = [ "Audio Listener", "GUI", "Physics", "Render Target", "Ren
 ]]
 
 z_index = -32
-script = ExtResource( 11 )
+script = ExtResource( 12 )
 _sections_unfolded = [ "Material", "Transform", "Visibility", "Z Index" ]
 
 [node name="Particles2D" type="Particles2D" parent="." index="8"]
@@ -574,7 +744,7 @@ visibility_rect = Rect2( -100, -100, 200, 200 )
 local_coords = true
 draw_order = 0
 process_material = SubResource( 8 )
-texture = ExtResource( 12 )
+texture = ExtResource( 13 )
 normal_map = null
 h_frames = 1
 v_frames = 1

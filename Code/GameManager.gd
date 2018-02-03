@@ -5,10 +5,14 @@ extends Control
 # var b = "textvar"
 var running = false
 var pegs = 6
+var pegUi
 var score = 0
 func _ready():
 	# Called every time the node is added to the scene.
 	# Initialization here
+	pegUi = [$Pegs/Peg,$Pegs/Peg2,$Pegs/Peg3,$Pegs/Peg4,$Pegs/Peg5,$Pegs/Peg6,$Pegs/Peg7]
+	
+	
 	run()
 	pass
 
@@ -32,7 +36,9 @@ func activated():
 
 func updateText():
 	get_node("Score").text = "Score " + str(score)
-	get_node("Pegs").text = "Pegs " + str(pegs)
+	updatePegs()
+	
+	#get_node("Pegs").text = "Pegs " + str(pegs)
 
 func message(stn):
 	get_node("Test").text = stn
@@ -75,7 +81,16 @@ func stop():
 	if pegs == 0:
 		loseGame()
 	pass
-	
+
+func updatePegs():
+#	get_node("Pegs/Peg7")
+	for i in range(7):
+		if i < pegs:
+			pegUi[i].show()
+		else:
+			pegUi[i].hide()
+		pass
+	pass
 
 func loseGame():
 	get_node("Game Over").show()

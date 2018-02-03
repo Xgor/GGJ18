@@ -39,7 +39,7 @@ func _input(event):
 			get_parent().add_child(o)
 			o.position = position
 			get_tree().call_group("GameManager", "activated")
-			get_tree().call_group("Tutorial", "hide")
+			get_tree().call_group("Tutorial", "moveAway")
 			get_node("PlaceSound").play()
 	
 	
