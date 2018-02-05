@@ -7,6 +7,7 @@ var object
 var sprite
 var active =false
 var pegs = 5
+
 func _ready():
 	# Called every time the node is added to the scene.
 	# Initialization here
@@ -33,7 +34,6 @@ func _input(event):
 	if event.is_pressed() and active:
 		#and canPlace()
 		if event.is_action_pressed("mouse_left") :
-			print("hello")
 			var o =object.duplicate()
 			o.show()
 			get_parent().add_child(o)
